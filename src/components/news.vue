@@ -37,8 +37,12 @@
         </td>
       </tbody>
     </table> -->
-    <h1>聊天室</h1>
-    <div v-for="(item,index) in tableData" :key="index" class="com">
+      <div class="top">
+          <h1>聊天评论内容</h1>
+        <input type="text" placeholder="搜索" v-model="search"/> 
+  	<!-- <button @click="btn">搜索</button> -->
+        </div>
+    <div v-for="(item,index) in table" :key="index" class="com">
       <span> {{item.createDate}}</span>
       <div class="content">
         <h2>{{item.title}}</h2>
@@ -55,6 +59,8 @@
 export default {
   data() {
     return {
+      // search:'',
+      search:"",
       tableData: []
     };
   },
@@ -66,7 +72,21 @@ export default {
         // console.log(res.data);
       });
     }
+  
+  },  
+  computed:{
+  	table:function(){
+  		return this.tableData.filter((item) =>{
+  			return item.title.match(this.search);
+  		})
+  	}
   },
+
+			
+  	
+  
+
+ 
   created() {
     this.getNewsList();
   }
@@ -80,6 +100,11 @@ export default {
   float: left;
   margin-top: 50px;
   margin-left: 10px;
+  position: relative;
+}
+.top{
+  width: 100%;
+  height: 80px;
 }
 
 /* table th{
@@ -92,11 +117,31 @@ table td{
 } */
 #news h1{
   font-size: 20px;
+ text-align: left;
 
+}
+#news input{
+  position: absolute;
+/* float: right; */
+  width: 200px;
+  height: 50px;
+  left: 400px;
+  top: 15px;
+}
+#news .top> button{
+  width: 50px;
+  height: 52px;
+  background: rgb(88, 253, 46);
+  color: #fff;
+  text-align: center;
+  /* float: right; */
+  position: absolute;
+  left: 553px;
+  top: -4px;
 }
 #news .com{
   width: 600px;
-  height: 200px;
+  height: 220px;
   position: relative;
   margin-top: 30px;
   background: #fff;
@@ -119,11 +164,15 @@ text-align: center;
   
 }
 button{
-  width: 50px;
-  height: 30px;
-  background: green;
+  width: 80px;
+  height: 50px;
+  background: rgb(54, 252, 54);
   color: #fff;
   text-align: center;
+  margin-top: 20px;
+  /* background: rgb(54, 252, 54); */
+  border: 1px  solid rgb(54, 252, 54);
+
 }
 </style>
 

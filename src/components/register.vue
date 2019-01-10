@@ -65,7 +65,12 @@ export default {
         .post("http://chenjiale.gz01.bdysite.com/api/registerSave.php", data)
         .then(res => {
          alert(res.data.message);
-         this.$router.push('./login')
+         if(res.data.valid==false){
+           this.$router.push('./register')
+         }else{
+this.$router.push('./login')
+         }
+         
         });
     }
   }

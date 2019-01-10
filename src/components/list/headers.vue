@@ -50,7 +50,7 @@ export default {
     },
     exit(){
       this.$cookies.remove('username')
-      location.reload()
+      // location.reload()
     }
   }
 };

@@ -37,7 +37,7 @@ import qs from 'qs'
      denglu(){
          var data=qs.stringify(this.user)
         this.$cookies.set('username',this.user.username, 3600) 
-                this.$cookies.set('userId',this.user.userId, 3600) 
+         this.$cookies.set('userId',this.user.userId, 3600) 
          this.axios.post('http://chenjiale.gz01.bdysite.com/api/loginSave.php',data)
          .then(res=>{
             //  alert(res.data.message)

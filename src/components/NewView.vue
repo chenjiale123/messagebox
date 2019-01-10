@@ -2,7 +2,10 @@
   <div class="newview">
     <div class="wrap view">
       <ul class="comments">
-        <h1>聊天评论内容</h1>
+    
+          <h1>聊天评论内容</h1>
+      
+        
         <li v-for="(val,index) in newsview" :key="index">
           <div class="card">
             <div class="card-header">
@@ -75,15 +78,17 @@ export default {
       this.axios
         .get("http://chenjiale.gz01.bdysite.com/api/getchatAll.php")
         .then(res => {
-          let data = res.data.message;
+          // let data = res.data.message;
           // console.log(data);
           // console.log(this.$cookies.get("username"))
-          data.forEach(val => {
-            if (val.userName == this.$cookies.get("username")) {
-              this.userId = val.userId;
-              //  console.log(this.userId);
-            }
-          });
+          // data.forEach(val => {
+          //   if (val.userName == this.$cookies.get("username")) {
+          //     this.userId = val.userId;
+          //      console.log(this.userId);
+          //   }
+          // });
+          this.userId=this.$cookies.get('userId')
+
         });
 
       // } else{
@@ -102,11 +107,20 @@ export default {
       this.axios
         .post("http://chenjiale.gz01.bdysite.com/api/messageAdd.php", fu)
         .then(res => {
-          if (res.data.valid) {
+          if(this.$cookies.get('name')){
+ if (res.data.valid) {
             alert("添加成功");
+             this.getChatall(this.start, this.end);
+              console.log(res.data.message)
           } else {
+            console.log(res.data.message)
           }
-          this.getChatall(this.start, this.end);
+          }else{
+            alert('你未登陆，请重新登陆')
+            this.$router.push('/login')
+          }
+         
+         
         });
     },
    onloadmore() {
@@ -167,6 +181,7 @@ export default {
 .comments li {
   height: auto;
 }
+
 .card {
   background: rgb(255, 255, 255);
   border: 1px solid #eee;

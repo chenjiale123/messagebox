@@ -15,7 +15,7 @@ import newchat from '@/components/newchat'
 Vue.use(Router)
 
 export default new Router({
-  // base:"/dist/",
+  base:"/dist/",
   routes: [
     {
       path: '/',
@@ -61,6 +61,6 @@ export default new Router({
       component: newchat
     }
     
-  ],mode:"history"
+  ]
 })
 

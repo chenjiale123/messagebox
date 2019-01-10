@@ -9,21 +9,21 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 
 
-router.beforeEach((to, from, next) => {
-  let token = $cookies.get('username');
-  console.log(token)
-  //如果有token的话说明你已经登录,让你正常登录
-  if (token) {
-    next();
-  } else {
-    //如果没有登录你访问的不是login就让你强制跳转到login页面
-    if (to.path !== "/login") {
-      next({ path: "/login" }||{ path: "/register" });
-    } else {
-      next();
-    }
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   let token = $cookies.get('username');
+//   console.log(token)
+//   //如果有token的话说明你已经登录,让你正常登录
+//   if (token) {
+//     next();
+//   } else {
+//     //如果没有登录你访问的不是login就让你强制跳转到login页面
+//     if (to.path !== "/login") {
+//       next({ path: "/login" }||{ path: "/register" });
+//     } else {
+//       next();
+//     }
+//   }
+// });
 
 Vue.use(ElementUI);
 import axios from 'axios'
